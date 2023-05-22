@@ -6,12 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class DemoApplication {
+public class gradlewApplication {
 	
 	private static ConfigurableApplicationContext context;
 
 	public static void main(String[] args) {
-		context = SpringApplication.run(DemoApplication.class, args);
+		context = SpringApplication.run(gradlewApplication.class, args);
 	}
 	
 	public static void restart() {
@@ -19,7 +19,7 @@ public class DemoApplication {
 
         Thread thread = new Thread(() -> {
             context.close();
-            context = SpringApplication.run(DemoApplication.class, args.getSourceArgs());
+            context = SpringApplication.run(gradlewApplication.class, args.getSourceArgs());
         });
                
         thread.setDaemon(false);

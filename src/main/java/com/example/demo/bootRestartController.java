@@ -14,6 +14,6 @@ public class bootRestartController {
 	  	@ResponseBody()
 	    public void restart() {
 	  		System.out.println("restart..!");
-	        DemoApplication.restart();
+	        gradlewApplication.restart();
 	    } 
 }
