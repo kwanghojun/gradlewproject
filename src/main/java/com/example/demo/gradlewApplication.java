@@ -21,6 +21,7 @@ public class gradlewApplication {
             context.close();
             context = SpringApplication.run(gradlewApplication.class, args.getSourceArgs());
         });
+        
                
         thread.setDaemon(false);
         thread.start();
