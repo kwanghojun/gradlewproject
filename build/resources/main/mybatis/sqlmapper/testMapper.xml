@@ -56,4 +56,23 @@
   <delete id="deleteLowDataCopy" parameterType="java.util.Map">
     delete from test_low_data_copy
   </delete>
+  <insert id="insertDicInfo" parameterType="com.example.demo.dto.dicInfoDto"> 
+  	<selectKey resultType="int" keyProperty="grp_seq" order="BEFORE">
+		select NVL(MAX(grp_idx),1) FROM DIC_CUST_INFO
+	</selectKey>
+    insert into DIC_CUST_INFO(grp_idx,wd_eng,wd_kor,typ,typ_seq,wd_typ,regdt)
+        values(
+	    	#{grp_seq},
+	    	#{wd_eng},
+	    	#{wd_kor},
+	    	#{typ},
+	    	#{typ_seq},
+	    	#{wd_typ},
+	    	sysdate
+	    )
+  </insert>
+  <select id="selectDicList" resultType="com.example.demo.dto.dicInfoDto" parameterType="java.util.Map">
+    	SELECT grp_idx,wd_eng,wd_eng,wd_kor,typ,typ_seq,wd_typ, (regdt,'YYYYMMDD') AS regdt 
+    		from DIC_CUST_INFO order by grp_idx,typ,typ_seq asc
+  </select>
 </mapper>

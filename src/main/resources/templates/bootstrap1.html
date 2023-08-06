@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlnm:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<script src="/js/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+<link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.min.css" />
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+<script src="https://uicdn.toast.com/grid/latest/tui-grid.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--  <script src="/js/bootstrap.bundle.min.js"></script>-->
+<script src="/js/custcom.js"></script>
+<script language="javascript">
+$(function() {
+	$("#intro").modal("show");
+	$('#close').on('click',function() {
+		$("#intro").modal("hide");
+	});
+	$('#subdialog').on('click',function() {
+		$( "#dialog2" ).dialog();
+	});
+	$( "#dialog" ).dialog();
+});
+</script>
+</head>
+
+<body class="bg-gradient-primary">
+
+<div id="dialog">
+affsf
+asd
+fas
+ff
+s
+fs
+afs
+fs
+<div id="subdialog">
+팝업
+</div>
+</div>
+<div id="dialog2">
+dialog2
+dialog3
+</div>
+<div class="line"></div>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Item</a>
+    <a class="dropdown-item" href="#">Another Item</a>
+    <a class="dropdown-item" href="#">One more item</a>
+  </div>
+
+    </div>
+ </body>
+ </html>

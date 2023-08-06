@@ -2,21 +2,37 @@ com/example/demo/MvcConfiguration.java
  com.example.demo.MvcConfiguration
  com.example.demo.MvcConfiguration$LocalMvcConfiguration
  com.example.demo.MvcConfiguration$ProdMvcConfiguration
+com/example/demo/testApp/dicController.java
+ com.example.demo.testApp.dicController
 com/example/demo/bootRestartController.java
  com.example.demo.bootRestartController
+com/example/demo/dto/lottoDto.java
+ com.example.demo.dto.lottoDto
 com/example/demo/testApp/restControll.java
  com.example.demo.testApp.restControll
-com/example/demo/configuration/DbConfiguration.java
- com.example.demo.configuration.DbConfiguration
-com/example/demo/DemoApplication.java
- com.example.demo.DemoApplication
+com/example/demo/dao/dicDao.java
+ com.example.demo.dao.dicDao
 com/example/demo/dto/testLowDto.java
  com.example.demo.dto.testLowDto
-com/example/demo/service/testService.java
- com.example.demo.service.testService
+com/example/demo/gradlewApplication.java
+ com.example.demo.gradlewApplication
+com/example/demo/service/dicService.java
+ com.example.demo.service.dicService
 com/example/demo/dao/testDao.java
  com.example.demo.dao.testDao
 com/example/demo/testApp/Book.java
  com.example.demo.testApp.Book
+com/example/demo/testApp/lottoController.java
+ com.example.demo.testApp.lottoController
+com/example/demo/dto/dicInfoDto.java
+ com.example.demo.dto.dicInfoDto
+com/example/demo/service/lottoService.java
+ com.example.demo.service.lottoService
+com/example/demo/dao/lottoDao.java
+ com.example.demo.dao.lottoDao
+com/example/demo/configuration/DbConfiguration.java
+ com.example.demo.configuration.DbConfiguration
+com/example/demo/service/testService.java
+ com.example.demo.service.testService
 com/example/demo/testApp/testController.java
  com.example.demo.testApp.testController

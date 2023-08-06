@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlnm:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Home</title>
+<script src="/js/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+  $(
+      function() {
+    	  console.log("jQuery..1!");
+    	$(document).ready(function() {
+    			viewContent('ready..!');
+    		 	console.log('ready1..!');
+    	});
+    	var setSeq=1;  
+    	viewContent('즉시..!');
+    	var dialog=null;
+        $( "#button" ).on( "click", function() {
+        	var dialogoption={
+        	      title: '다이얼로그 제목',
+        	      modal: false,
+        	      width: '300',
+        	      height: '300'
+        	};
+        	dialog=$( "#myDialog" ).dialog(dialogoption);
+    	});
+        
+        $( "#close" ).on( "click", function() {
+        	$('#myDialog').dialog('close');
+    	});
+    	
+    	$( "#dialog" ).hide();
+    	var persion= {
+      		  type:"인간",
+      		  getName: function () {
+      			  return this.name;
+      		  },
+      		  getType: function () {
+      			  return this.type;
+      		  }
+        }
+    	
+    	var cloneObj=Object.create(persion);
+    	persion.name="cloneName";
+    	viewContent("name="+persion.getName());
+    	viewContent("type="+persion.getType());
+    	
+    	'use strict';
+
+    	var obj = { // does not create a new scope
+    	  i: 10,
+    	  b: () => viewContent('b..=>',this.i, this),
+    	  c: function() {
+    	    viewContent('c..=>', this.i, this)
+    	  }
+    	}
+    	obj.b(); // prints undefined, Window {...} (or the global object)
+    	obj.c(); // prints 10, Object {...}
+    	
+    	const numbers = [1,2,3,4,5,6,7,8,9,10,11,12];
+    	let sum = numbers.reduce((acc, cur) => {
+    	    viewContent('Prev=='+acc+'-'+cur);
+    	    if(acc > 10) {
+    	    	acc=1;
+    	    }
+    	    viewContent('Next=='+acc+'-'+cur);
+    		return acc + cur;
+    	});
+    	
+    	viewContent('sum==['+sum+']');
+    	
+    	test();
+        function viewContent(getCont) {
+       	  var getContent=$("#content").val();
+       	  if(setSeq==1) {
+       	     $("#content").val(setSeq+" : " + getCont);
+       	  } else {
+       		$("#content").val(getContent+"\r\n"+setSeq+" : " + getCont.toString()); 
+       	  }
+       	  setSeq+=1;
+        }
+        
+        function test(getParam="333") {
+        	var k="1111";
+        	var m="22222";
+        	console.log(this);
+        }
+      }             	
+  );
+  
+  ( function(factory) {
+	  	factory(jQuery);;
+    }
+  ) ( function($) {
+	  console.log("jQuery..2!");
+		  $(document).ready(function() {
+			  console.log('ready2..!');
+			  //lastFunc();
+	  	});
+      }
+    );
+    
+  (function lastFunc() {
+	  console.log('lastFunc..!');
+  })
+  
+</script>
+</head>
+<body>tory
+ThymeLeaf html templates
+<button id="button">dailog</button>
+<button id="close">close</button>
+<div id="myDialog">
+	popupmesage
+</div>
+	<div id="content_area">
+		<table>
+			<tr>
+				<td>### log ### <span th:text="${test}"></span><span th:text="abcd"></span></td>
+			</tr>
+			<tr>
+				<td><textarea id="content" rows="40" cols="120" style="background:#000000;color:#ffffff;">
+					</textarea></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<a href="/gridtest">gridtest</a>
+	</div>
+	<div>
+		<a href="/bootstrap1">bootstrap1</a>
+	</div>
+</body>
+</html>

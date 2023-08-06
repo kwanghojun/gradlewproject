@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html xmlnm:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<script src="/js/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.css" />
+<link rel="stylesheet" href="https://uicdn.toast.com/grid/latest/tui-grid.min.css" />
+<script src="https://uicdn.toast.com/grid/latest/tui-grid.js"></script>
+<script src="https://uicdn.toast.com/grid/latest/tui-grid.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/custcom.js"></script>
+<script language="javascript">
+$(
+	      function() {
+	    	  
+	    	
+	    	var  gridData=[
+	    		   {
+	    			   name:'name1',
+	    			   artist:'artist',
+	    			   type:'type1',
+	    			   checked:true
+	    		   },
+	    		   {
+	    			   name:'name2',
+	    			   artist:'artist2',
+	    			   type:'type2'
+	    		   },
+	    		   {
+	    			   name:'name3',
+	    			   artist:'artist3',
+	    			   type:'type3'
+	    		   }
+	    	]; 
+	    	function fcheck(element) {
+	    		var findFlag=false;
+	    		for(var i=1; i < 3;i++) {
+	    			if(element.name == 'name'+i) {
+	    				findFlag=true;
+	    				break;
+	    			} 
+	    		}
+	    		return findFlag;
+	    	}
+	    	
+	    	
+	    	var  gridAppendData=[
+		    		   {
+		    			   release:'release1'
+		    		   },
+		    		   {
+		    			   release:'release2'
+		    		   },
+		    		   {
+		    			   release:'release3'
+		    		   }
+	    		   ];	    	
+	    	var options1={
+	    			parentRowKey:1,
+	    			offset:2,
+	    			focus:false
+	    	}
+	    	
+	    	var options2={
+	    			at:1,
+	    			extendPrevRowSpan:true,
+	    			focus:false,
+	    			parentRowKey:0
+	    	}
+			const grid = new tui.Grid({
+			    el: document.getElementById('grid'),
+			    scrollX: false,
+			    scrollY: false,
+			    data: gridData,
+				rowHeaders: ['checkbox'],
+			    header: {
+			      height: 160,
+			      complexColumns: [
+			        {
+			          header: 'Basic',
+			          name: 'mergeColumn1',
+			          childNames: ['name', 'artist'],
+			        },
+			        {
+			          header: 'Extra',
+			          name: 'mergeColumn2',
+			          childNames: ['type', 'release', 'genre'],
+			        },
+			        {
+			          header: 'Detail',
+			          name: 'mergeColumn3',
+			          childNames: ['mergeColumn1', 'mergeColumn2'],
+			        },
+			        {
+			          header: 'Count',
+			          name: 'mergeColumn4',
+			          childNames: ['downloadCount', 'listenCount'],
+			        },
+			        {
+			          header: 'Album Info',
+			          name: 'mergeColumn5',
+			          childNames: ['price', 'mergeColumn3', 'mergeColumn4'],
+			        },
+			      ],
+			    },
+			    columns: [
+			      {
+			        header: 'Name',
+			        name: 'name',
+			      },
+			      {
+			        header: 'Artist',
+			        name: 'artist',
+			      },
+			      {
+			        header: 'Type',
+			        name: 'type',
+			      },
+			      {
+			        header: 'Release',
+			        name: 'release',
+			      },
+			      {
+			        header: 'Genre',
+			        name: 'genre',
+			      },
+			      {
+			        header: 'Price',
+			        name: 'price',
+			      },
+			      {
+			        header: 'Download',
+			        name: 'downloadCount',
+			      },
+			      {
+			        header: 'Listen',
+			        name: 'listenCount',
+			      },
+			    ],
+			  });
+	    	
+	    	
+
+	    	gridData=gridData.filter(function(element) {
+	    		var findFlag=false;
+	    		for(var i=1; i < 3;i++) {
+	    			if(element.name == 'name'+i) {
+	    				findFlag=true;
+	    				break;
+	    			} 
+	    		}
+	    		return findFlag;
+	    	});
+	    	
+	    	grid.resetData(gridData);
+	    	grid.refreshLayout();
+			  
+			  var itemObj= function(props) {
+				  	const getIdx=props.rowKey;
+		    		const getRowData=props.grid.getRow(getIdx);
+		    		if(getRowData.type !='GROUP') {
+			    		const $butObj = $("<span><button id=\"test\" value=\"1\">BUTTON</button></span><div>GO</div>");
+			    		const eventId='#test';
+			    		console.log(eventId+'----'+getRowData.type+'---'+$butObj.get(0));
+			    		$butObj.find(eventId).on("click",function() {
+			    			console.log('Click Event getData...c1=['+getRowData.c1+'] c2=['+getRowData.c2+']');
+			    		});
+						this.butObj=$butObj.get(0);
+						const tmpObj=$butObj.get();
+						console.log('tmpObj..size : ['+tmpObj.length+']' );
+						for ( var i = 0; i < tmpObj.length; i++) {
+					          console.log('tmpObj..['+i+']=='+tmpObj[i].innerHTML );
+					    }
+		    		} else {
+		    			this.butObj=$("<span></span>").get(0);
+		    		}
+		    	}
+		    	
+		    	itemObj.prototype = {
+		    			getElement() {
+		    		        return this.butObj;
+		    		    },	    		      
+		    		    render(props) {
+		    		    	console.log('render props..['+props.value+']');
+		    		        //this.object.value = String(props.value);
+		    		    }
+		    	}
+		    	
+		    	var testObj=function(getText) {
+		    		this.text=getText; 
+		    	}
+		    	
+		    	testObj.prototype = {
+		    			testArray(){
+		    				this.text="text222";
+		    				return this.text;
+		    			}
+		    	}
+		    	
+				// 테스트 생성
+				var treeListArray = new Array();
+				for(var i=1; i<=10; i++){
+					// 객체 생성
+					var data = new Object();
+					data.type = "GROUP";
+					data.c1 = "C1-"+i;
+					data.c2 = "C2-"+i;
+					data._attributes = {
+						       expanded: false // default: false
+				    };
+					var subList = new Array();
+					for(var s=1; s <=5;s++) {
+						var subObj=new Object();
+						subObj.type = "CHILDREN";
+						subObj.c1="SUB_C1"+i+"-"+s;
+						subObj.c2="SUB_C2"+i+"-"+s;
+						subObj.checked=true;
+						subList.push(subObj);
+					}
+					data._children=subList;
+					// 리스트에 생성된 객체 삽입
+					treeListArray.push(data);
+				}
+				
+				// String 형태로 변환
+				var jsonData = JSON.stringify(treeListArray) ;
+			   const grid2 = new tui.Grid({
+				    el: document.getElementById('grid2'),
+				    scrollX: false,
+				    scrollY: true,
+				    data: treeListArray,
+				    rowHeaders: ['checkbox'],
+				    header: {
+				      height: 160,
+				      hidden:true
+				    },
+				    columns: [
+					      {
+					        header: 'c1',
+					        name: 'c1'					        
+					      },
+					      {
+					        header: 'c2',
+					        name: 'c2',					        
+					      },
+					      {
+					    	  header: 'c3',
+						      name: 'c3',		  
+						      renderer: {
+						            type: itemObj
+						      }
+					      }
+				      ],
+			      treeColumnOptions: {
+			        name: 'c1',
+			        useIcon: false,
+			        useCascadingCheckbox: true
+			      }				   
+			   });
+			   grid2.on('onGridMounted',(ev) =>  {
+				  	console.log('#### grid2 event(onGridMounted) !');
+				  	//  .div.tui-grid-header-area
+				  	$('#grid2 > div > div > div.tui-grid-lside-area > div.tui-grid-header-area').hide();
+				  	$('#grid2 > div > div > div.tui-grid-rside-area > div.tui-grid-header-area').hide();
+			   });
+			   
+			   grid2.on('expand', (ev) => {
+				   const {rowKey} = ev;
+				   const descendantRows = grid2.getDescendantRows(rowKey);
+					
+				   console.log('expand_rowKey: ' + rowKey);
+				   for(var i=0; i < descendantRows.length;i++) {
+				   	console.log('expand_descendantRows:' + descendantRows[i].rowKey+"__"+descendantRows[i].c1);
+				   }
+				 });
+			   
+			   grid2.on('collapse', ev => {
+				      const { rowKey } = ev;
+				      const descendantRows = grid.getDescendantRows(rowKey);
+				      console.log('collapse_rowKey: ' + rowKey);
+				      console.log('collapse_descendantRows: ' + descendantRows.toString());
+				    });
+			   grid2.on('click', function(ev) {
+				   //alert(ev.rowKey+"-"+ev.nativeEvent);
+				   getRowData=grid2.getRow(ev.rowKey);
+				   console.log('key==['+ev.rowKey+']....getRowData.type==['+getRowData.type+'] ['+getRowData.c1+']');
+				   var keyArray=grid2.getCheckedRowKeys();
+				   for(var i=0; i < keyArray.length; i++) {
+				  		var getRowDataCheck=grid2.getRow(keyArray[i]);
+				  		console.log('-- checked data=['+getRowDataCheck.c1+']');
+				  	}
+				   var getEnKey=keyArray.find(enKey => enKey === ev.rowKey);
+				   if(getEnKey == undefined) {
+					   grid2.check(ev.rowKey);
+				   } else {
+					   grid2.uncheck(ev.rowKey);
+				   }
+				    console.log('-- getEnKey=['+getEnKey+']');
+					grid2.refreshLayout();
+				   //}
+			    });
+			   
+			   
+			   grid.on('check',function(ev) {
+					console.log('checked..');
+					
+			   });
+			   
+			   grid.on('uncheck',function(ev) {
+				   console.log('unchecked..');
+			   });
+			   $.fn.goBut = function(){
+	    	  		console.log('extend function');
+	    	   }
+			   var tmpArry1=['ABCD_1','ABCD_2','ABCD_3','ABCD_5','ABCD_4'];
+			   //var tmpArry2=['ABCD_6','ABCD_3','ABCD_2','ABCD_4','ABCD_8'];
+			   var tmpArry2=['ABCD_1','ABCD_5','ABCD_3','ABCD_2','ABCD_4','ABCD_4'];
+			   console.log('isSameArray==['+com.isSameArray(tmpArry1,tmpArry2)+']');
+		   }
+);
+
+(
+      function($) {
+    	  	
+      }
+)(jQuery)	      
+$(document).ready(function() {
+
+	
+})
+</script>
+<body>
+<div id="grid"></div>
+
+<div id="grid2"></div>
+<button id="tmpBut" onclick="$(this).goBut()">테스트 버튼</button>
+</body>
+</html>

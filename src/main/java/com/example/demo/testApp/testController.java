@@ -51,4 +51,18 @@ public class testController {
 		return view; 
 	}
 	
+	@RequestMapping(value="/gridtest") 
+	public String gridtest(HttpServletRequest request){ 
+		System.out.println("home.. gridtest..!!!!...");
+		request.setAttribute("test","request 테스트 value");
+		return "gridtest"; 
+	}
+	
+	@RequestMapping(value="/bootstrap1") 
+	public String bootstrap1(HttpServletRequest request){ 
+		System.out.println("home.. gridtest..!!!!...");
+		request.setAttribute("test","request 테스트 value");
+		return "bootstrap1"; 
+	}
+	
 }
