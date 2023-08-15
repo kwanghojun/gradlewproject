@@ -132,5 +132,14 @@ ThymeLeaf html templates
 	<div>
 		<a href="/bootstrap1">bootstrap1</a>
 	</div>
+	<th:block th:each="list, idx:${result}">
+		<div class="row">
+		<th:block th:each="sublist, subidx:${list}">
+			<div>
+				test
+			</div>
+		</th:block>
+		</div>
+	</th:block>
 </body>
 </html>

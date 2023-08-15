@@ -160,7 +160,7 @@ $(
 	    	grid.resetData(gridData);
 	    	grid.refreshLayout();
 			  
-			  var itemObj= function(props) {
+			  	var itemObj= function(props) {
 				  	const getIdx=props.rowKey;
 		    		const getRowData=props.grid.getRow(getIdx);
 		    		if(getRowData.type !='GROUP') {
@@ -190,7 +190,32 @@ $(
 		    		        //this.object.value = String(props.value);
 		    		    }
 		    	}
-		    	
+		    	class itemObj2 {
+		    		constructor(props) {
+			    		const getIdx=props.rowKey;
+			    		const getRowData=props.grid.getRow(getIdx);
+			    		const $downLink=$("<a href=\"list.html?idx="+getRowData.c1+"\">"+getRowData.c1+"</a>");
+			    		this.linkObj=$downLink.get(0);
+			    		this.render(props);
+		    		}
+		    		getElement(){
+			    		return this.linkObj;	
+			    	}
+		    		render (props) {
+			    		console.log('render props..['+props.value+']');
+			    	}
+		    	}
+		    	/**
+		    	itemObj2.prototype = {
+		    			getElement() {
+		    		        return this.linkObj;
+		    		    },	    		      
+		    		    render(props) {
+		    		    	console.log('render props..['+props.value+']');
+		    		        //this.object.value = String(props.value);
+		    		    }
+		    	}
+		    	**/
 		    	var testObj=function(getText) {
 		    		this.text=getText; 
 		    	}
@@ -246,7 +271,10 @@ $(
 					      },
 					      {
 					        header: 'c2',
-					        name: 'c2',					        
+					        name: 'c2',	
+					        renderer: {
+					            type: itemObj2
+					      	}
 					      },
 					      {
 					    	  header: 'c3',
